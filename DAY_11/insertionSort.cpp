@@ -13,7 +13,10 @@ void insertionSort(int *arr, int n)
         }
         arr[prev + 1] = curr;
     }
-    cout << (arr, n);
+    for (int i = 0; i < n; i++)
+    {
+        cout << arr[i]<<",";
+    }
 }
 int main()
 {
