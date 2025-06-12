@@ -1,4 +1,5 @@
 #include <iostream>
+#include <limits.h>
 using namespace std;
 // linearSearch function to find key in arr
 int linearSearch(int *arr, int n, int key)
@@ -74,6 +75,45 @@ int binarySearch(int *arr, int n, int key)
     }
     return -1;
 }
+
+// for subarray
+void subArray(int *arr, int n)
+{
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = i; j < n; j++)
+        {
+            for (int k = i; k <= j; k++)
+            {
+                cout << arr[k];
+            }
+            cout << " ";
+        }
+        cout << endl;
+    }
+}
+
+
+// for max  subarray sum( brute force approch)
+void maxSubArraySum(int *arr, int n)
+{
+    int maxSum = INT_MIN;
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = i; j < n; j++)
+        {
+            int currSum = 0;
+            for (int k = i; k <= j; k++)
+            {
+                currSum += arr[k];
+            }
+            cout << currSum << ", ";
+            maxSum = max(maxSum, currSum);
+        }
+        cout << endl;
+    }
+    cout << "maximum subarrays sum= " << maxSum;
+}
 int main()
 {
     // int arr[5] = {2, 34, 5, 56, 1};
@@ -82,7 +122,17 @@ int main()
     // reverceArr2(arr, n);
 
     // for binary search
-    int arr[5] = {2, 4, 6, 8, 10};
+    // int arr[5] = {2, 4, 6, 8, 10};
+    // int n = sizeof(arr) / sizeof(int);
+    // cout << binarySearch(arr, n, 8);
+
+    // for subarray
+    // int arr[5] = {1, 2, 3, 4, 5};
+    // int n = sizeof(arr) / sizeof(int);
+    // subArray(arr, n);
+
+    // for max  subarray sum
+    int arr[6] = {2, -3, 6, -5, 4, 2};
     int n = sizeof(arr) / sizeof(int);
-    cout << binarySearch(arr, n, 8);
+    maxSubArraySum(arr, n);
 }
