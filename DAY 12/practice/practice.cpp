@@ -114,6 +114,8 @@ void maxSubArraySum(int *arr, int n)
     }
     cout << "maximum subarrays sum= " << maxSum;
 }
+
+
 int main()
 {
     // int arr[5] = {2, 34, 5, 56, 1};
