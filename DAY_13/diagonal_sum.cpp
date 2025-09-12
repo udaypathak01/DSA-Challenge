@@ -1,7 +1,24 @@
-#include <stdio.h>
+#include <iostream>
 using namespace std;
-void diagonalSum(int mat[][], int n)
+int diagonalSum(int mat[][4], int n)
 {
+    int sum = 0;
+    for (int i = 0; i < n; i++) // for rows
+    {
+        for (int j = 0; j < n; j++) // fir cols
+        {
+            if (i == j)
+            {
+                sum += mat[i][j];
+            }
+            else if (j == n - i - 1)
+            {
+                sum += mat[i][j];
+            }
+        }
+    }
+    cout<<sum<<endl;
+    return sum;
 }
 int main()
 {
@@ -11,4 +28,6 @@ int main()
         {9, 10, 11, 12},
         {13, 14, 15, 16},
     };
+
+ diagonalSum(mat, 4);
 }
