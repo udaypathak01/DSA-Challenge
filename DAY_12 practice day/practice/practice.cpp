@@ -12,7 +12,6 @@ int linearSearch(int *arr, int n, int key)
         }
     }
 }
-
 // function for printing array
 void printArry(int *arr, int n)
 {
@@ -21,7 +20,6 @@ void printArry(int *arr, int n)
         cout << arr[i] << ",";
     }
 }
-
 // Reverce a arr function with extra space
 void reverceArr(int *arr, int n)
 {
@@ -39,7 +37,6 @@ void reverceArr(int *arr, int n)
     }
     printArry(arr, n);
 }
-
 // reverce a array without extra space
 void reverceArr2(int *arr, int n)
 {
@@ -52,7 +49,6 @@ void reverceArr2(int *arr, int n)
     }
     printArry(arr, n);
 }
-
 // for binary search
 int binarySearch(int *arr, int n, int key)
 {
@@ -75,7 +71,6 @@ int binarySearch(int *arr, int n, int key)
     }
     return -1;
 }
-
 // for subarray
 void subArray(int *arr, int n)
 {
@@ -92,8 +87,6 @@ void subArray(int *arr, int n)
         cout << endl;
     }
 }
-
-
 // for max  subarray sum( brute force approch)
 void maxSubArraySum(int *arr, int n)
 {
@@ -114,27 +107,80 @@ void maxSubArraySum(int *arr, int n)
     }
     cout << "maximum subarrays sum= " << maxSum;
 }
-
-
+// for max  subarray sum( brute force approch)(optimized code On^2 time complexity)
+void maxArraySum2(int *arr, int n)
+{
+    int maxSum = INT_MIN;
+    for (int start = 0; start < n; start++)
+    {
+        int currSum = 0;
+        for (int end = start; end < n; end++)
+        {
+            currSum += arr[end];
+            maxSum = max(maxSum, currSum);
+        }
+    }
+    cout << "your max sum of subArray is: " << maxSum;
+}
+// for max  subarray sum( Kadane's algo approch)
+void maxArraySum3(int *arr, int n)
+{
+    int maxSum = INT_MIN, currSum = 0;
+    for (int i = 0; i < n; i++)
+    {
+        currSum = currSum + arr[i];
+        maxSum = max(maxSum, currSum);
+        if (currSum < 0)
+        {
+            currSum = 0;
+        }
+    }
+    cout << "the max sum is: " << maxSum;
+}
+// buy and sell stock problem to find max profit
+void buyAndSellStock(int *prices, int n)
+{
+    int bestBuy[10000];
+    bestBuy[0] = INT_MAX;
+    for (int i = 1; i < n; i++)
+    {
+        bestBuy[i] = min(bestBuy[i - 1], prices[i - 1]);
+    }
+    int maxProfit = 0;
+    for (int i = 0; i < n; i++)
+    {
+        int currProfit = prices[i] - bestBuy[i];
+        maxProfit = max(maxProfit, currProfit);
+    }
+    cout << "maxprofit = " << maxProfit << endl;
+}
+void 
 int main()
 {
     // int arr[5] = {2, 34, 5, 56, 1};
     // int n = sizeof(arr) / sizeof(int);
     // cout << "your key was :" << linearSearch(arr, n, 5) << endl;
     // reverceArr2(arr, n);
-
-    // for binary search
+    // +++++++++++++ for binary search +++++++++++++
     // int arr[5] = {2, 4, 6, 8, 10};
     // int n = sizeof(arr) / sizeof(int);
     // cout << binarySearch(arr, n, 8);
-
-    // for subarray
+    // +++++++++++++ for subarray On^3 +++++++++++++
     // int arr[5] = {1, 2, 3, 4, 5};
     // int n = sizeof(arr) / sizeof(int);
     // subArray(arr, n);
+    // +++++++++++++ for max  subarray sum by optimized code On^2 time complexity +++++++++++++
+    // int arr[6] = {2, -3, 6, -5, 4, 2};
+    // int n = sizeof(arr) / sizeof(int);
+    // maxArraySum2(arr, n);
+    //+++++++++++++ for max  subarray sum( Kadane's algo approch( On)) +++++++++++++
+    // int arr[6] = {2, -3, 6, -5, 4, 2};
+    // int n = sizeof(arr) / sizeof(int);
+    // maxArraySum3(arr, n);
+    // buy and sell stock problem to find max profit
+    // int prices[] = {7, 1, 5, 3, 6, 4};
+    // int n = sizeof(prices) / sizeof(int);
+    // buyAndSellStock(prices, n);
 
-    // for max  subarray sum
-    int arr[6] = {2, -3, 6, -5, 4, 2};
-    int n = sizeof(arr) / sizeof(int);
-    maxSubArraySum(arr, n);
+ 
 }
