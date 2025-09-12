@@ -1,5 +1,6 @@
 #include <iostream>
 using namespace std;
+// diagonal sum of a matrix O(n^2)
 int diagonalSum(int mat[][4], int n)
 {
     int sum = 0;
@@ -12,9 +13,26 @@ int diagonalSum(int mat[][4], int n)
                 sum += mat[i][j];
             }
             else if (j == n - i - 1)
-            {
+            { 
                 sum += mat[i][j];
             }
+        }
+    }
+    cout<<sum<<endl;
+    return sum;
+}
+// diagonal sum of a matrix O(n)
+int diagonalSumOptimized(int mat[][4], int n)
+{
+    int sum = 0;
+    for (int i = 0; i < n; i++) // for rows
+    {
+        // primary diagonal
+        sum += mat[i][i];
+        // secondary diagonal
+        if (i != n - i - 1) // to avoid double counting the middle element in odd sized matrix
+        {
+            sum += mat[i][n - i - 1];
         }
     }
     cout<<sum<<endl;
@@ -30,4 +48,6 @@ int main()
     };
 
  diagonalSum(mat, 4);
+    diagonalSumOptimized(mat, 4);
+        
 }
