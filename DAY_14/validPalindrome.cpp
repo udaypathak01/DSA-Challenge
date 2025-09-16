@@ -16,7 +16,7 @@ bool isPalindrome(char arr[], int n)
 
         start++;
         end--;
-    }
+    } 
 
     cout << "this is a valid palindrome!";
     return true;
